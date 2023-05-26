@@ -2,14 +2,16 @@ package com.example.taskmanagmentapp.user;
 
 import com.example.taskmanagmentapp.task.Task;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "userix")
 public class User {
     @Id

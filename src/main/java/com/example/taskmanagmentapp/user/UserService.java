@@ -21,8 +21,10 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(UserDoNotExistException::new);
     }
 
-    public User addUser(User user) {
-        return userRepository.save(user);
+    public UserDto addUser(UserDto userDto) {
+        User user = UserMappers.mapToEntity(userDto);
+        User savedUser = userRepository.save(user);
+        return UserMappers.mapToDto(savedUser);
     }
 
     public User updateUser(Long id, User user) {
