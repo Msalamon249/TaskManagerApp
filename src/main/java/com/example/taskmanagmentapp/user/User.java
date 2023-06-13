@@ -33,6 +33,6 @@ public class User {
 
     public void addTask(Task task) {
         userTasks.add(task);
-   //     task.setAssignee(this);
+        task.setAssignee(this);
     }
 }

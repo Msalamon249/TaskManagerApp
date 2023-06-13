@@ -1,7 +1,8 @@
 package com.example.taskmanagmentapp.task;
 
 
-import jakarta.annotation.Priority;
+import com.example.taskmanagmentapp.category.Category;
+import com.example.taskmanagmentapp.user.User;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,24 +19,19 @@ public class Task {
     private Long id;
     private String title;
     private String description;
-//    @Enumerated
-//    private Priority priority;
-//    @Enumerated
-//    private String status ;        //
+    @Enumerated
+    private Priority priority;
     private LocalDate endDate;
+    @ManyToOne
+    private Category category;
+    @ManyToOne
+    private User assignee;
 
-    //assignee -> uzytownik przyspiany do wykonanai zadania
-    //category -> kategoria do ktorej nalezy zadanie
 
-
-
-
-//    public Task(String title, String description, Priority priority, String status, LocalDate endDate) {
-//        this.title = title;
-//        this.description = description;
-//        this.priority = priority;
-//        this.status = status;
-//        this.endDate = endDate;
-//    }
-
+    public Task(String title, String description, Priority priority, LocalDate endDate) {
+        this.title = title;
+        this.description = description;
+        this.priority = priority;
+        this.endDate = endDate;
+    }
 }

@@ -62,4 +62,12 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void deleteTaskFromUser(Long id, Long taskId) {
+        User user = userRepository.findById(id).orElseThrow(UserDoNotExistException::new);
+        Task task = taskRepository.findById(taskId).orElseThrow(CategoryDoNotExistException::new);
+        List<Task> userTasks = user.getUserTasks();
+        userTasks.remove(task);
+
+    }
+
 }
