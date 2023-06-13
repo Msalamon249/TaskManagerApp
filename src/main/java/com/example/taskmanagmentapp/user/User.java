@@ -1,6 +1,7 @@
 package com.example.taskmanagmentapp.user;
 
 import com.example.taskmanagmentapp.task.Task;
+import com.example.taskmanagmentapp.task.TaskRepository;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,5 +31,8 @@ public class User {
         this.password = password;
     }
 
-
+    public void addTask(Task task) {
+        userTasks.add(task);
+   //     task.setAssignee(this);
+    }
 }

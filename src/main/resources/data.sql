@@ -6,9 +6,19 @@ INSERT INTO CATEGORY(name,description) VALUES ('Finance','Zadania dotyczące zad
 INSERT INTO CATEGORY(name,description) VALUES ('Meetings','Zadania związane z organizacją spotkań, zarządzaniem kalendarzem i harmonogramem');
 
 
+
+insert into USERIX (user_name, email, password) values ('Gaïa', 'vlaverock0@omniture.com', 'mJ3''Gow!=');
+insert into USERIX (user_name, email, password) values ('Zoé', 'eberget1@nymag.com', 'hY6/"/dtX');
+insert into USERIX (user_name, email, password) values ('Aloïs', 'lrichards2@dot.gov', 'iM5''S5~Z\');
+insert into USERIX (user_name, email, password) values ('Östen', 'wwinkless3@auda.org.au', 'pV4+dfF`B');
+insert into USERIX (user_name, email, password) values ('Chloé', 'lcasazza4@usatoday.com', 'mA9$J!QRl=},');
+insert into USERIX (user_name, email, password) values ('Kallisté', 'jbethel5@arstechnica.com', 'rV0%>GDf@D1');
+insert into USERIX (user_name, email, password) values ('Kù', 'ufeld6@lycos.com', 'tP0!97"K4j(`uA$');
+insert into USERIX (user_name, email, password) values ('Yú', 'othornhill7@unblog.fr', 'wF0)kqk.hQv#`$/v');
+
 --
 --
--- INSERT INTO tasks (task_id, title, description, priority, due_date, status, user_id, category_id, comments)
+-- INSERT INTO tasks (title, description, priority, due_date, status, user_id, category_id, comments)
 -- VALUES
 --     (1, 'Zadanie 1', 'Opis zadania 1', 'High', '2023-06-15', 'In Progress', 1, 1, NULL),
 --     (2, 'Zadanie 2', 'Opis zadania 2', 'Medium', '2023-06-20', 'Pending', 2, 2, NULL),
