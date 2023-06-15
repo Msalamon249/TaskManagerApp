@@ -20,13 +20,16 @@ public class TaskService {
         return taskRepository.findById(id).orElseThrow(TaskDoNotExistException::new);
     }
 
-    public Task addTask(Task task){
-       return taskRepository.save(task);
+    public Task addTask(Task task) {
+        return taskRepository.save(task);
     }
 
-//    public Task updateTask(Long id, Task task){
-//        Task taskToUpate = taskRepository.findById(id).orElseThrow(TaskDoNotExistException::new);
-//
-//    }
+
+
+    public void deleteTask(Long id) {
+        taskRepository.deleteById(id);
+    }
+
+
 
 }

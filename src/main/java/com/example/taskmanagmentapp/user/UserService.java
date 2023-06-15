@@ -2,6 +2,7 @@ package com.example.taskmanagmentapp.user;
 
 import com.example.taskmanagmentapp.exceptions.CategoryDoNotExistException;
 import com.example.taskmanagmentapp.exceptions.UserDoNotExistException;
+import com.example.taskmanagmentapp.task.Priority;
 import com.example.taskmanagmentapp.task.Task;
 import com.example.taskmanagmentapp.task.TaskRepository;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -70,4 +72,29 @@ public class UserService {
 
     }
 
+    public List<Task> filterUserTasksByCategoryAndPriority(Long id, String categoryName, Priority priority) {
+        User user = userRepository.findById(id).orElseThrow(UserDoNotExistException::new);
+        List<Task> userTasks = user.getUserTasks();
+
+        if (categoryName != null && priority != null) {
+            return userTasks.stream()
+                    .filter(task -> task.getCategory().getName().equals(categoryName) && task.getPriority().equals(priority))
+                    .collect(Collectors.toList());
+        } else if (categoryName != null) {
+
+            return userTasks.stream()
+                    .filter(task -> task.getCategory().getName().equals(categoryName))
+                    .collect(Collectors.toList());
+
+        } else if (priority != null) {
+
+            return userTasks.stream()
+                    .filter(task -> task.getPriority().equals(priority))
+                    .collect(Collectors.toList());
+
+        } else {
+
+            return userTasks;
+        }
+    }
 }

@@ -19,28 +19,28 @@ public class CategoryController {
 
 
     @GetMapping
-    public Page<Category> findAllCategories(@RequestParam int page) {
+    public Page<CategoryDto> findAllCategories(@RequestParam int page) {
         int requestedPage = page < 1 ? 1 : page;
         return categoryService.findAllCategories(requestedPage);
 
     }
 
     @GetMapping("/{id}")
-    public Category findById(@PathVariable Long id) {
+    public CategoryDto findById(@PathVariable Long id) {
         return categoryService.findById(id);
     }
 
 
     @PostMapping
-    public ResponseEntity<Category> addCategory(@RequestBody Category category) {
-        Category category1 = categoryService.addCategory(category);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(category1.getId()).toUri();
-        return ResponseEntity.created(uri).body(category1);
+    public ResponseEntity<CategoryDto> addCategory(@RequestBody CategoryDto categoryDto) {
+        CategoryDto categoryDto1 = categoryService.addCategory(categoryDto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoryDto1.getId()).toUri();
+        return ResponseEntity.created(uri).body(categoryDto1);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) {
-        Category updated = categoryService.updateCategory(id,category);
+    public ResponseEntity<CategoryDto> updateCategory(@PathVariable Long id, @RequestBody CategoryDto categoryDto) {
+        CategoryDto updated = categoryService.updateCategory(id,categoryDto);
         return ResponseEntity.ok(updated);
     }
 

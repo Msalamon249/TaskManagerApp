@@ -4,15 +4,17 @@ package com.example.taskmanagmentapp.task;
 import com.example.taskmanagmentapp.category.Category;
 import com.example.taskmanagmentapp.user.User;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,7 @@
 package com.example.taskmanagmentapp.user;
 
+import com.example.taskmanagmentapp.category.Category;
+import com.example.taskmanagmentapp.task.Priority;
 import com.example.taskmanagmentapp.task.Task;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -48,10 +50,6 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/{id}/tasks")
-    public List<Task> getAllUserTasks(@PathVariable Long id) {
-        return userService.getAllUserTasks(id);
-    }
 
     @PostMapping("/{id}/tasks/{taskId}")
     public ResponseEntity<String> assignNewTaskToUser(@PathVariable Long id, @PathVariable Long taskId) {
@@ -68,6 +66,16 @@ public class UserController {
     public ResponseEntity deleteUserTask(@PathVariable Long id, @PathVariable Long taskId) {
         userService.deleteTaskFromUser(id, taskId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/tasks")
+    public List<Task> getAllUserTasks(@PathVariable Long id) {
+        return userService.getAllUserTasks(id);
+    }
+
+    @GetMapping("/{id}/tasks/filter")
+    public List<Task> filterUserTask(@PathVariable Long id, @RequestParam(required = false) String categoryName, @RequestParam(required = false) Priority priority) {
+        return userService.filterUserTasksByCategoryAndPriority(id,categoryName, priority);
     }
 
 }

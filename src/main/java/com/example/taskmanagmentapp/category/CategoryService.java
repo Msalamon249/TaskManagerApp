@@ -14,25 +14,30 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
 
 
-    public Page<Category> findAllCategories(int page) {
+    public Page<CategoryDto> findAllCategories(int page) {
 
         PageRequest pageable = PageRequest.of(page, SIZE_ON_PAGE);
-        return categoryRepository.findAll(pageable);
+        return categoryRepository.findAll(pageable).map(CategoryMappers::maptoDto);
     }
 
-    public Category findById(@PathVariable Long id) {
-        return categoryRepository.findById(id).orElseThrow(CategoryDoNotExistException::new);
+    public CategoryDto findById(@PathVariable Long id) {
+        Category category = categoryRepository.findById(id).orElseThrow(CategoryDoNotExistException::new);
+        return CategoryMappers.maptoDto(category);
+
     }
 
-    public Category addCategory(Category category) {
-        return categoryRepository.save(category);
+    public CategoryDto addCategory(CategoryDto categoryDto) {
+        Category toCreate = CategoryMappers.mapToEntity(categoryDto);
+        Category created = categoryRepository.save(toCreate);
+        return CategoryMappers.maptoDto(created);
     }
 
-    public Category updateCategory(Long id, Category category) {
+    public CategoryDto updateCategory(Long id, CategoryDto categoryDto) {
         Category categoryToUpdate = categoryRepository.findById(id).orElseThrow(CategoryDoNotExistException::new);
-        categoryToUpdate.setName(category.getName());
-        categoryToUpdate.setDescription(category.getDescription());
-        return categoryToUpdate;
+        categoryToUpdate.setName(categoryDto.getName());
+        categoryToUpdate.setDescription(categoryDto.getDescription());
+        Category saved = categoryRepository.save(categoryToUpdate);
+        return CategoryMappers.maptoDto(saved);
     }
 
     public void deleteById(Long id) {

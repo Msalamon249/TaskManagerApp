@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.util.UriComponentsBuilder;
+
 
 import java.net.URI;
 import java.util.List;
@@ -32,6 +32,12 @@ public class TaskController {
         Task createdTask = taskService.addTask(task);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdTask.getId()).toUri();
         return ResponseEntity.created(uri).body(createdTask);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteTaskById(Long id){
+        taskService.deleteTask(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
