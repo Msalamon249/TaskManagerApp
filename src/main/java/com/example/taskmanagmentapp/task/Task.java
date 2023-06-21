@@ -2,7 +2,7 @@ package com.example.taskmanagmentapp.task;
 
 
 import com.example.taskmanagmentapp.category.Category;
-import com.example.taskmanagmentapp.user.User;
+import com.example.taskmanagmentapp.employee.Employee;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,25 +15,38 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Priority priority;
     private LocalDate endDate;
     @ManyToOne
     private Category category;
     @ManyToOne
-    private User assignee;
+    private Employee employee;
 
 
-    public Task(String title, String description, Priority priority, LocalDate endDate) {
+    public Task(String title, String description, Priority
+            priority, LocalDate endDate) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.endDate = endDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", priority='" + priority + '\'' +
+                ", endDate=" + endDate +
+                '}';
     }
 }

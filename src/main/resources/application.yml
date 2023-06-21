@@ -1,6 +1,8 @@
 spring:
   datasource:
     url: jdbc:h2:mem:test
+
+  liquibase:
+    change-log: classpath:liquibase-changeLog.xml
   jpa:
-    defer-datasource-initialization: true
     show-sql: true

@@ -23,6 +23,9 @@ public class Category {
 
     private String description;
 
+    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "category")
+    private List<Task> taskList = new ArrayList<>();
+
     public Category(String name, String description) {
         this.name = name;
         this.description = description;

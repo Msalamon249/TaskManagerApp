@@ -1,17 +1,22 @@
 package com.example.taskmanagmentapp.category;
 
 import com.example.taskmanagmentapp.exceptions.CategoryDoNotExistException;
+import com.example.taskmanagmentapp.task.TaskRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Optional;
+
+
 @Service
 @AllArgsConstructor
 public class CategoryService {
-    private static final int SIZE_ON_PAGE = 3;
+    private static final int SIZE_ON_PAGE = 5;
     private final CategoryRepository categoryRepository;
+    private final TaskRepository taskRepository;
 
 
     public Page<CategoryDto> findAllCategories(int page) {

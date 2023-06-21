@@ -2,18 +2,18 @@ package com.example.taskmanagmentapp.task;
 
 import com.example.taskmanagmentapp.category.Category;
 import com.example.taskmanagmentapp.category.CategoryRepository;
-import com.example.taskmanagmentapp.user.User;
-import com.example.taskmanagmentapp.user.UserRepository;
+import com.example.taskmanagmentapp.employee.Employee;
+import com.example.taskmanagmentapp.employee.EmployeeRepository;
 
 
 public class TaskMappers {
 
 
-    private final UserRepository userRepository;
+    private final EmployeeRepository employeeRepository;
     private final CategoryRepository categoryRepository;
 
-    public TaskMappers(UserRepository userRepository, CategoryRepository categoryRepository) {
-        this.userRepository = userRepository;
+    public TaskMappers(EmployeeRepository employeeRepository, CategoryRepository categoryRepository) {
+        this.employeeRepository = employeeRepository;
         this.categoryRepository = categoryRepository;
     }
 
@@ -25,7 +25,7 @@ public class TaskMappers {
                 .endDate(task.getEndDate())
                 .priority(task.getPriority())
                 .categoryName(task.getCategory().getName())
-                .userName(task.getAssignee().getUserName())
+                .userName(task.getEmployee().getUserName())
                 .build();
     }
 
@@ -33,7 +33,7 @@ public class TaskMappers {
     public Task mapToEntity(TaskDto taskDto) {
 
         Category category = categoryRepository.findByNameIgnoreCase(taskDto.getCategoryName()).orElseThrow(IllegalArgumentException::new);
-        User user = userRepository.findByUserNameIgnoreCase(taskDto.getUserName()).orElseThrow(IllegalArgumentException::new);
+        Employee employee = employeeRepository.findByUserNameIgnoreCase(taskDto.getUserName()).orElseThrow(IllegalArgumentException::new);
 
         return Task.builder()
                 .id(taskDto.getId())
@@ -42,7 +42,7 @@ public class TaskMappers {
                 .endDate(taskDto.getEndDate())
                 .priority(taskDto.getPriority())
                 .category(category)
-                .assignee(user)
+                .employee(employee)
                 .build();
     }
 }
