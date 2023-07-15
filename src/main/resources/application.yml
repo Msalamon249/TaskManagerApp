@@ -8,3 +8,6 @@ spring:
     change-log: classpath:liquibase-changeLog.xml
   jpa:
     show-sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

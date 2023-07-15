@@ -2,9 +2,10 @@ package com.example.taskmanagmentapp.employee;
 
 
 import com.example.taskmanagmentapp.task.Task;
-import jakarta.persistence.*;
+
 import lombok.*;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity

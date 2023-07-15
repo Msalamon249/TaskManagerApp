@@ -1,9 +1,10 @@
 package com.example.taskmanagmentapp.category;
 
 import com.example.taskmanagmentapp.task.Task;
-import jakarta.persistence.*;
+
 import lombok.*;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 

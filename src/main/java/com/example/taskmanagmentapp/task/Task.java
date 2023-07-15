@@ -3,9 +3,10 @@ package com.example.taskmanagmentapp.task;
 
 import com.example.taskmanagmentapp.category.Category;
 import com.example.taskmanagmentapp.employee.Employee;
-import jakarta.persistence.*;
+
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 

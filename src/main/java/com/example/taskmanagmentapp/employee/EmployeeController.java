@@ -1,10 +1,9 @@
 package com.example.taskmanagmentapp.employee;
 
-import com.example.taskmanagmentapp.task.Priority;
-import com.example.taskmanagmentapp.task.Task;
+
 import com.example.taskmanagmentapp.task.TaskDto;
 import com.example.taskmanagmentapp.task.TaskMappers;
-import jakarta.validation.Valid;
+
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
@@ -78,7 +78,6 @@ public class EmployeeController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error assigning task to user: " + e.getMessage());
         }
     }
-
 
 
     @DeleteMapping("/{id}/tasks/{taskId}")
